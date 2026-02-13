@@ -3,149 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Earn Pro - Amir Hamza Network</title>
+    <title>Amir Hamza Premium Casino - Ultra Ads</title>
     
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     
     <!-- Adsterra Social Bar & Popunder -->
     <script src="https://pl28710343.effectivegatecpm.com/e1/71/5d/e1715d3cbc848ab99e8b5ceff41d01b8.js"></script>
 
     <style>
-        :root { --p: #0ea5e9; --s: #ec4899; --bg: #020617; --card: #1e293b; --text: #f1f5f9; --wa: #25D366; --tg: #0088cc; }
+        :root { --gold: #ffd700; --dark: #0b0d17; --card: #161b22; --p: #0ea5e9; --s: #ec4899; --wa: #25D366; --tg: #0088cc; --yt: #FF0000; --fb: #1877F2; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+        body { background: var(--dark); color: white; overflow-x: hidden; cursor: pointer; }
 
-        header { background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(10px); padding: 15px 5%; display: flex; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #334155; }
-        .balance-chip { background: linear-gradient(90deg, var(--p), var(--s)); padding: 5px 15px; border-radius: 20px; font-weight: 800; font-size: 14px; }
+        /* 1. Auto Refresh Timer Bar */
+        .refresh-timer { position: fixed; top: 0; left: 0; height: 5px; background: linear-gradient(to right, var(--gold), var(--s)); width: 100%; z-index: 2000; animation: timer-progress 15s linear infinite; }
+        @keyframes timer-progress { from { width: 100%; } to { width: 0%; } }
 
-        .container { max-width: 1200px; margin: 20px auto; padding: 0 15px; display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media (min-width: 1024px) { .container { grid-template-columns: 300px 1fr 300px; } }
-
-        .card { background: var(--card); border-radius: 20px; padding: 25px; border: 1px solid #334155; position: relative; }
-        
-        /* Floating Telegram Button */
-        .float-contact { position: fixed; bottom: 30px; right: 20px; z-index: 1000; }
-        .float-btn { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 28px; box-shadow: 0 5px 20px rgba(0, 136, 204, 0.5); transition: 0.3s; text-decoration: none; background: var(--tg); animation: pulse 2s infinite; }
-        .float-btn:hover { transform: scale(1.1) rotate(10deg); }
-
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.6); } 70% { box-shadow: 0 0 0 15px rgba(0, 136, 204, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0); } }
-
-        /* Tabs */
-        .tabs { display: flex; justify-content: space-around; background: var(--card); padding: 10px; border-radius: 50px; margin-bottom: 20px; border: 1px solid #334155; }
-        .tab-item { cursor: pointer; opacity: 0.6; padding: 8px 15px; font-weight: bold; font-size: 14px; transition: 0.3s; }
-        .tab-active { opacity: 1; color: var(--p); border-bottom: 2px solid var(--p); }
-
-        /* Task & Progress */
-        .progress-ring { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(var(--p) 0deg, #334155 0deg); margin: 20px auto; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: inset 0 0 20px rgba(0,0,0,0.5); }
-        .progress-ring::before { content: ""; position: absolute; width: 110px; height: 110px; background: var(--card); border-radius: 50%; }
-        .progress-ring span { position: relative; font-size: 28px; font-weight: 900; color: var(--p); }
-
-        .btn { background: linear-gradient(135deg, var(--p), #0ea5e9); color: white; border: none; width: 100%; padding: 18px; border-radius: 15px; font-size: 18px; font-weight: bold; cursor: pointer; transition: 0.3s; box-shadow: 0 5px 15px rgba(14, 165, 233, 0.3); }
-        .btn:hover { filter: brightness(1.2); }
-
-        #notify { position: fixed; bottom: 20px; left: 20px; background: white; color: black; padding: 12px 20px; border-radius: 10px; font-size: 13px; transform: translateY(200%); transition: 0.5s; z-index: 1000; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border-left: 5px solid var(--tg); }
-
-        .support-link { display: flex; align-items: center; justify-content: center; gap: 12px; background: #334155; padding: 18px; border-radius: 15px; margin-top: 15px; text-decoration: none; color: white; font-weight: bold; border: 1px solid #475569; transition: 0.3s; }
-        .support-link:hover { background: #475569; }
-    </style>
-</head>
-<body onclick="handlePop()">
-
-<!-- Floating Telegram Button -->
-<div class="float-contact">
-    <a href="https://t.me/Amirh370" target="_blank" class="float-btn">
-        <i class="fab fa-telegram-plane"></i>
-    </a>
-</div>
-
-<!-- Fake Payment Notification -->
-<div id="notify">User <b>Amir Hamza</b> just withdrew $10.00</div>
-
-<header>
-    <div style="font-size: 20px; font-weight: 900; letter-spacing: -1px;">MEGAEARN <span style="color: var(--p);">PRO</span></div>
-    <div class="balance-chip">$ <span id="balance">0.00</span></div>
-</header>
-
-<div class="container">
-    <!-- Sidebar Ad Left -->
-    <div class="card">
-        <span style="font-size: 10px; color: #64748b; display: block; margin-bottom: 10px;">SPONSORED AD</span>
-        <center>
-            <script>atOptions = {'key' : '25dea51816ccf1440371367ae3710e86','format' : 'iframe','height' : 250,'width' : 300,'params' : {}};</script>
-            <script src="https://www.highperformanceformat.com/25dea51816ccf1440371367ae3710e86/invoke.js"></script>
-        </center>
-    </div>
-
-    <!-- Main Section -->
-    <div>
-        <div class="tabs">
-            <div class="tab-item tab-active" onclick="showTab('task')"><i class="fas fa-hammer"></i> Work</div>
-            <div class="tab-item" onclick="showTab('withdraw')"><i class="fas fa-wallet"></i> Withdraw</div>
-            <div class="tab-item" onclick="showTab('support')"><i class="fas fa-headset"></i> Support</div>
-        </div>
-
-        <!-- Task Content -->
-        <div id="task-tab" class="card">
-            <h2>Daily High CPM Task</h2>
-            <div class="progress-ring" id="ring"><span>0%</span></div>
-            
-            <!-- Adsterra Native Container -->
-            <div id="container-faeeda3c47e0ef1ff97069c4db938d36"></div>
-            <script async="async" data-cfasync="false" src="https://pl28710350.effectivegatecpm.com/faeeda3c47e0ef1ff97069c4db938d36/invoke.js"></script>
-
-            <button class="btn" id="taskBtn" onclick="doTask()">NEXT TASK</button>
-            <p style="margin-top: 15px; font-size: 12px; color: #94a3b8;">System: Auto-Impressions Engine Active</p>
-        </div>
-
-        <!-- Withdraw Tab -->
-        <div id="withdraw-tab" class="card" style="display: none;">
-            <h2>Withdraw Balance</h2>
-            <p style="font-size: 13px; color: #94a3b8; margin: 10px 0;">Minimum withdraw is $5.00</p>
-            <input type="text" placeholder="Bkash/Nagad Number" style="width: 100%; padding: 15px; margin-top: 10px; border-radius: 10px; background: #0f172a; border: 1px solid #334155; color: white;">
-            <button class="btn" style="background: var(--s); margin-top: 20px;" onclick="alert('Insufficient Balance!')">WITHDRAW NOW</button>
-        </div>
-
-        <!-- Support Tab (Amir Hamza) -->
-        <div id="support-tab" class="card" style="display: none;">
-            <h2>Admin Support</h2>
-            <p style="color: #94a3b8; margin: 10px 0;">যেকোনো প্রয়োজনে অ্যাডমিন <b>Amir Hamza</b> এর সাথে সরাসরি যোগাযোগ করুন।</p>
-            
-            <a href="https://t.me/Amirh370" target="_blank" class="support-link" style="border-left: 5px solid var(--tg);">
-                <i class="fab fa-telegram fa-2x"></i> Join Telegram Channel
-            </a>
-            
-            <a href="https://t.me/Amirh370" target="_blank" class="support-link" style="border-left: 5px solid #fff;">
-                <i class="fas fa-user-shield fa-2x"></i> Contact Amir Hamza
-            </a>
-            <p style="margin-top: 20px; font-size: 11px; color: #475569;">Working Hours: 24/7 Support Available</p>
-        </div>
-    </div>
-
-    <!-- Sidebar Ad Right -->
-    <div class="card">
-        <span style="font-size: 10px; color: #64748b; display: block; margin-bottom: 10px;">PREMIUM OFFERS</span>
-        <center>
-            <script>atOptions = {'key' : '25dea51816ccf1440371367ae3710e86','format' : 'iframe','height' : 250,'width' : 300,'params' : {}};</script>
-            <script src="https://www.highperformanceformat.com/25dea51816ccf1440371367ae3710e86/invoke.js"></script>
-        </center>
-    </div>
-</div>
-
-<footer style="text-align: center; padding: 30px; opacity: 0.5; font-size: 12px;">
-    © 2024 Amir Hamza Network | Powered by Adsterra High CPM
-    <script src="https://pl28710362.effectivegatecpm.com/12/b4/e8/12b4e8dbd7c2d0422de3d08a535f9d37.js"></script>
-</footer>
-
-<script>
-    let bal = localStorage.getItem('mega_bal') ? parseFloat(localStorage.getItem('mega_bal')) : 0.00;
-    let progress = 0;
-    let popDone = false;
-    const adUrl = "https://viiukuhe.com/dc/?blockID=418817";
-
-    document.getElementById('balance').innerText = bal.toFixed(2);
-
-    function handlePop() { if (!popDone) { window.open(adUrl, '_blank'); popDone = true; } }
-
-    function doTask() {
-        if ("vibrate" in navigator) navigator.vibrate(50);
+        header { background: rgba(0,0,0,0.9); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--gold); position: sticky; top: 5px; z-index: 100; backdrop-filter: blur(10px); }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 24px; font-weight: 900; color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+        .balance-chip { background: var(--gold); color: black; padding: 5px 15px; border-radius: 5px; font-weig
