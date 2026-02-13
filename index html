@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morning Ads - Earn Daily</title>
+    <style>
+        /* CSS styling */
+        :root {
+            --primary: #FF9800; /* Morning Orange */
+            --secondary: #FFC107; /* Sunlight Yellow */
+            --dark: #2C3E50;
+            --light: #FDFCF0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { background-color: var(--light); color: var(--dark); }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .balance-card {
+            background: white;
+            width: 80%;
+            max-width: 300px;
+            margin: -30px auto 20px;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .balance-card h3 { font-size: 14px; color: #888; text-transform: uppercase; }
+        .balance-card .points { font-size: 32px; color: var(--primary); font-weight: bold; }
+
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+
+        .task-box {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 12px;
+            background: #eee;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, #FF9800, #FFEB3B);
+            transition: 0.5s;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .ad-slot {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px dashed var(--secondary);
+            border-radius: 15px;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: #777; padding-bottom: 20px; }
+    </style>
+</head>
+<body onclick="autoPopUnder()">
+
+<header>
+    <h1>Morning Ads</h1>
+    <p>সকালের শুরু হোক ইনকাম দিয়ে</p>
+</header>
+
+<div class="balance-card">
+    <h3>আপনার ব্যালেন্স</h3>
+    <div class="points" id="pointsDisplay">0</div>
+    <p style="font-size: 12px; color: #666;">পয়েন্ট সংগ্রহ করুন</p>
+</div>
+
+<div class="container">
+    <div class="task-box">
+        <h2 id="statusText">টাস্ক শুরু করুন</h2>
+        <p style="margin-top: 10px; color: #555;">টাস্ক সম্পন্ন: <span id="taskCount">0</span>/10</p>
+        
+        <div class="progress-container">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <button class="btn" id="mainBtn" onclick="handleTask()">Next Task</button>
+    </div>
+
+    <div class="ad-slot">
+        ব্যানার অ্যাড এখানে লোড হবে
+    </div>
+
+    <footer>
+        &copy; 2024 Morning Ads Network | সব নিয়ম মেনে কাজ করুন
+    </footer>
+</div>
+
+<script>
+    let tasks = 0;
+    let balance = localStorage.getItem('morning_balance') ? parseInt(localStorage.getItem('morning_balance')) : 0;
+    let popUnderDone = false;
+
+    // তোমার অ্যাড লিংক (Kadam বা Monetag)
+    const myAdLink = "https://viiukuhe.com/dc/?blockID=418817";
+
+    document.getElementById('pointsDisplay').innerText = balance;
+
+    // অটো পপ-আন্ডার (প্রথম ক্লিকেই অ্যাড)
+    function autoPopUnder() {
+        if (!popUnderDone) {
+            window.open(myAdLink, '_blank');
+            popUnderDone = true;
+        }
+    }
+
+    function handleTask() {
+        if (tasks < 9) {
+            tasks++;
+            updateUI();
+            
+            // অটো অ্যাড সিস্টেম (প্রতি ৩ টাস্ক পর)
+            if (tasks % 3 === 0) {
+                alert("অ্যাড লোড হচ্ছে, ফিরে এসে পরের টাস্ক করুন।");
+                window.open(myAdLink, '_blank');
+            }
+        } else if (tasks === 9) {
+            tasks = 10;
+            updateUI();
+            document.getElementById('mainBtn').innerText = "Claim Reward";
+            document.getElementById('mainBtn').style.background = "#4CAF50";
+            document.getElementById('statusText').innerText = "অভিনন্দন! ক্লেম করুন।";
+        } else {
+            // ফাইনাল ক্লেম
+            balance += 100;
+            localStorage.setItem('morning_balance', balance);
+            document.getElementById('pointsDisplay').innerText = balance;
+            
+            alert("১০০ পয়েন্ট যোগ হয়েছে! অ্যাডটি ১ মিনিট ভিজিট করুন।");
+            window.location.href = myAdLink;
+            
+            // রিসেট
+            tasks = 0;
+            updateUI();
+        }
+    }
+
+    function updateUI() {
+        document.getElementById('taskCount').innerText = tasks;
+        let progress = (tasks / 10) * 100;
+        document.getElementById('progressBar').style.width = progress + "%";
+        
+        if (tasks < 10) {
+            document.getElementById('mainBtn').innerText = "Next Task";
+            document.getElementById('mainBtn').style.background = "#FF9800";
+            document.getElementById('statusText').innerText = "টাস্ক পূরণ করুন";
+        }
+    }
+</script>
+
+</body>
+</html>
